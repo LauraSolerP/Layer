@@ -1,0 +1,1 @@
+{"version":3,"file":"tokenManagerService.d.ts","sourceRoot":"","sources":["../../src/service/tokenManagerService.ts"],"names":[],"mappings":"AAGC,KAAK,SAAS,GAAG;IACd,GAAG,EAAE,MAAM,CAAA;CACb,CAAA;AAGD,qBAAa,YAAY;WAET,QAAQ,CAAE,IAAI,EAAE,SAAS,GAAG,OAAO,CAAC,MAAM,CAAC;WAM3C,MAAM,CAAE,KAAK,EAAE,MAAM,GAAG,OAAO,CAAC,SAAS,CAAC;CAMzD"}
