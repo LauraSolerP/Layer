@@ -12,7 +12,7 @@ export class userService {
         const user = await this.helper.findUserById(id)
 
         if (!user) {
-            throw new UserNotFound(`The user with id ${id} can't be reach`)
+            throw new UserNotFound(`The user with id ${id} can't be reached`)
         }
 
         return user

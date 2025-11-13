@@ -1,5 +1,9 @@
 import { Entity } from "./entity"
 
+enum UserType{
+    CLIENT = 'CLIENT',
+    OWNER = 'OWNER'
+}
 
 export class User implements Entity {
     constructor(
@@ -7,7 +11,8 @@ export class User implements Entity {
         readonly nom: string,
         readonly cognom: string,
         readonly email: string,
-        readonly password: string
+        readonly password: string,
+        readonly type: UserType
     ) {}
 
     getPrimitive () {
@@ -16,21 +21,23 @@ export class User implements Entity {
             nom: this.nom,
             cognom: this.cognom,
             email: this.email,
-            password: this.password
+            password: this.password,
+            type: this.type
         }
     }
 
-    static create (id: string, nom: string, cognom: string, email: string, password: string): User {
-        return new User(id, nom, cognom, email, password)
+    static create (id: string, nom: string, cognom: string, email: string, password: string, type: UserType): User {
+        return new User(id, nom, cognom, email, password, type)
     }
 
-    update (nom: string, cognom: string): User {
+    update (nom: string, cognom: string, email: string, password: string, type: UserType): User {
         return new User(
             this.id,
             nom,
             cognom,
-            this.email,
-            this.password
+            email,
+            password,
+            type
         )
     }
 
