@@ -1,3 +1,4 @@
+import { v4 } from "uuid"
 import { Entity } from "./entity"
 
 
@@ -6,8 +7,7 @@ export class Truck implements Entity {
     constructor(
         readonly id: string,
         readonly ownerId: string,
-        readonly nom: string,
-        readonly eventId: string
+        readonly nom: string
     ) {}
 
     getPrimitive () {
@@ -19,7 +19,10 @@ export class Truck implements Entity {
     }
 
     static create (id: string, ownerId: string, nom: string): Truck {
-        return new Truck(id, ownerId, nom)
+        return new Truck(
+            id = v4(), 
+            ownerId, 
+            nom)
     }
 
     update (ownerId: string, nom: string): Truck {

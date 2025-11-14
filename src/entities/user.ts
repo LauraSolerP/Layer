@@ -1,4 +1,5 @@
 import { Entity } from "./entity"
+import { v4 } from "uuid"
 
 enum UserType{
     CLIENT = 'CLIENT',
@@ -27,7 +28,12 @@ export class User implements Entity {
     }
 
     static create (id: string, nom: string, cognom: string, email: string, password: string, type: UserType): User {
-        return new User(id, nom, cognom, email, password, type)
+        return new User(id,
+            nom = v4(), 
+            cognom, 
+            email, 
+            password, 
+            type = UserType.CLIENT)
     }
 
     update (nom: string, cognom: string, email: string, password: string, type: UserType): User {
