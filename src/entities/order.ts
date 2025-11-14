@@ -2,15 +2,23 @@ import { v4 } from "uuid"
 import { Entity } from "./entity"
 import { DateTime } from "luxon"
 
+export enum OrderState {
+    PENDING = 'PENDING',
+    IN_PROGRESS = 'IN_PROGRESS',
+    COMPLETED = 'COMPLETED',
+    CANCELLED = 'CANCELLED'
+}
+
 
 export class Order implements Entity {
     constructor(
         readonly id: string,
         readonly clientId: string,
+        readonly truckId: string,
         readonly specialRequests: string,
-        readonly totalValue: number,
-        readonly totalCurrency: string,
-        readonly delivered: boolean,
+        readonly orderValue: number,
+        readonly orderCurrency: string,
+        readonly state: OrderState,
         readonly deliveryTime: DateTime
     ) {}
 
