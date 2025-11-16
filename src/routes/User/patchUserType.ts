@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { UserMiddleware } from "../middlewares/userMiddleware";
-import { requireRole } from "../middlewares/requireRoleMiddleware";
 import { PatchUserTypeController } from "../controllers/patchUserTypeController";
 
 export function patchUserTypeRoute (router: Router) { 
