@@ -9,8 +9,8 @@ enum UserType{
 export class User implements Entity {
     constructor(
         readonly id: string,
-        readonly nom: string,
-        readonly cognom: string,
+        readonly name: string,
+        readonly surname: string,
         readonly email: string,
         readonly password: string,
         readonly type: UserType
@@ -19,29 +19,29 @@ export class User implements Entity {
     getPrimitive () {
         return {
             id: this.id,
-            nom: this.nom,
-            cognom: this.cognom,
+            nom: this.name,
+            cognom: this.surname,
             email: this.email,
             password: this.password,
             type: this.type
         }
     }
 
-    static create (id: string, nom: string, cognom: string, email: string, password: string, type: UserType): User {
+    static create (id: string, name: string, surname: string, email: string, password: string, type: UserType): User {
         return new User(
             id = v4(),
-            nom, 
-            cognom, 
+            name, 
+            surname, 
             email, 
             password, 
             type = UserType.CLIENT)
     }
 
-    update (nom: string, cognom: string, email: string, password: string, type: UserType): User {
+    update (name: string, surname: string, email: string, password: string, type: UserType): User {
         return new User(
             this.id,
-            nom,
-            cognom,
+            name,
+            surname,
             email,
             password,
             type
