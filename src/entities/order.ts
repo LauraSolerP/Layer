@@ -16,8 +16,8 @@ export class Order implements Entity {
         readonly clientId: string,
         readonly truckId: string,
         readonly specialRequests: string,
-        readonly orderValue: number,
-        readonly orderCurrency: string,
+        readonly totalValue: number,
+        readonly totalCurrency: string,
         readonly state: OrderState,
         readonly deliveryTime: DateTime
     ) {}
@@ -29,30 +29,32 @@ export class Order implements Entity {
             specialRequests: this.specialRequests,
             totalValue: this.totalValue,
             totalCurrency: this.totalCurrency,
-            delivered: this.delivered,
+            state: this.state,
             deliveryTime: this.deliveryTime
         }
     }
 
-    static create (id: string, clientId: string, specialRequests: string, totalValue: number, totalCurrency: string, delivered: boolean, deliveryTime: DateTime): Order {
+    static create (id: string, clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Order {
         return new Order(
             id = v4(), 
             clientId, 
-            specialRequests, 
+            truckId, 
+            specialRequests,
             totalValue, 
             totalCurrency = "EUR", 
-            delivered, 
+            state, 
             deliveryTime)
     }
 
-    update (specialRequests: string, totalValue: number, totalCurrency: string, delivered: boolean, deliveryTime: DateTime): Order {
+    update (truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Order {
         return new Order(
             this.id,
             this.clientId,
+            truckId,
             specialRequests,
             totalValue,
             totalCurrency,
-            delivered,
+            state,
             deliveryTime
         )
     }

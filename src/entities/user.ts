@@ -28,8 +28,9 @@ export class User implements Entity {
     }
 
     static create (id: string, nom: string, cognom: string, email: string, password: string, type: UserType): User {
-        return new User(id,
-            nom = v4(), 
+        return new User(
+            id = v4(),
+            nom, 
             cognom, 
             email, 
             password, 
