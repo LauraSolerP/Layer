@@ -25,7 +25,7 @@ export class Inscription implements Entity {
             id = v4(), 
             truckId, 
             eventId,
-            participation)
+            participation = true)
     }
 
     update (participation: boolean): Inscription {

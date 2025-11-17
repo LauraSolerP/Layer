@@ -14,4 +14,15 @@ export class userHelper extends Helper<User> {
         return (await this.getRepository()).findOneBy({id})
     }
 
-}
+    async findUserByEmail (email: string): Promise<User | null> {
+        return (await this.getRepository()).findOneBy({email})
+    }
+
+    async saveUser (user: User): Promise<User> {
+        return (await this.getRepository()).save(user)
+    }
+
+    async deleteUser (id: string): Promise<void> {
+        await (await this.getRepository()).delete(id)
+    }
+} 
