@@ -39,14 +39,14 @@ export class User implements Entity {
     }
 
 
-    update (name: string, surname: string, email: string, password: string, type: UserType): User {
+    update (data: {name?: string | undefined, surname?: string | undefined, email?: string | undefined, password?: string | undefined, type?: UserType | undefined}): User {
         return new User(
             this.id,
-            name,
-            surname,
-            email,
-            password,
-            type
+            data.name ?? this.name,
+            data.surname ?? this.surname,
+            data.email ?? this.email,
+            data.password ?? this.password,
+            data.type ?? this.type
         )
     }
 

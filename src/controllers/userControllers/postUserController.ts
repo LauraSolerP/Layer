@@ -1,27 +1,26 @@
 import { Request, Response } from "express"
 import { userService } from "../../service/userService"
 
-export class PatchUserTypeController {
+export class PostUserController {
 
     constructor(private readonly service: userService) {}
 
     async run(req: Request, res: Response): Promise<Response> {
 
-        const id = res.locals.userId
-        const { type } = req.body
+        const { name, surname, email, password, type } = req.body
 
         try {
 
-            await this.service.updateUser(id, type)
+            await this.service.createUser(name, surname, email, password, type)
 
             return res.status(200).json({
                 ok: true,
-                message: "User updated successfully"
+                message: "User created successfully"
             })
 
         } catch (error: any) {
 
-            if (error.name === "UserNotFound") {
+            if (error.name === "ExistingEmailError") {
                 return res.status(404).json({
                     ok: false,
                     message: error.message

@@ -1,6 +1,13 @@
 import { Router } from "express";
-import { PostUserController } from "../controllers/postUserController";
+import { UserMiddleware } from "../../middlewares/userMiddleware";
+import { PostUserController } from "../../controllers/userControllers/postUserController";
+import { userService } from "../../service/userService";
+import { userHelper } from "../../helpers/userHelper";
 
-export function postUserRoute (router: Router) {
-    router.post("/v1/users", new PostUserController().run)
+const helper = new userHelper()
+const service = new userService(helper)
+const postUserController = new PostUserController(service)
+
+export function postUserRoute (router: Router) { 
+    router.post("/v1/users", new UserMiddleware().run, postUserController.run.bind(postUserController))
 }

@@ -7,22 +7,30 @@ export class DeleteUserController {
 
     async run(req: Request, res: Response): Promise<Response> {
 
-        const userIdToDelete = req.params.id
-        const authenticatedUserId = res.locals.userId
+        const id = res.locals.userId
 
         try {
 
-            await this.service.deleteUser(userIdToDelete, authenticatedUserId)
+            await this.service.deleteUser(id)
 
             return res.status(204).json({
                 ok: true,
-                message: "Usuari esborrat correctament"
+                message: "User deleted successfully"
             })
 
         } catch (error: any) {
-            return res.status(404).json({
+
+            if (error.name === "UserNotFound") {
+                return res.status(404).json({
+                    ok: false,
+                    message: error.message
+                })
+            }
+
+            return res.status(500).json({
                 ok: false,
-                message: error.message
+                message: "Server internal error",
+                error: error.message
             })
         }
     }
