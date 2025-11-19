@@ -2,6 +2,7 @@ import { User, UserType } from "../entities/user";
 import { UserNotFound } from "../errors/user/userNotFound";
 import { userHelper } from "../helpers/userHelper";
 import { ExistingEmailError } from "../errors/user/existingEmailError";
+import { IncorrectPasswordError } from "../errors/user/incorrectPasswordError";
 
 
 export class userService {
@@ -14,6 +15,22 @@ export class userService {
 
         if (!user) {
             throw new UserNotFound(id)
+        }
+
+        return user
+
+    }
+
+    async findUserByEmail (email: string, password: string): Promise<User> {
+
+        const user = await this.helper.findUserByEmail(email)
+
+        if (!user) {
+            throw new UserNotFound(user.id)
+        }
+
+        if(password !== user.password) {
+            throw new IncorrectPasswordError()
         }
 
         return user
