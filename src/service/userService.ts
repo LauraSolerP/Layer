@@ -2,7 +2,7 @@ import { User, UserType } from "../entities/user";
 import { UserNotFound } from "../errors/user/userNotFound";
 import { userHelper } from "../helpers/userHelper";
 import { ExistingEmailError } from "../errors/user/existingEmailError";
-import { IncorrectPasswordError } from "../errors/user/incorrectPasswordError";
+import { IncorrectPasswordOrMailError } from "../errors/user/incorrectPasswordOrMailError";
 
 
 export class userService {
@@ -26,11 +26,11 @@ export class userService {
         const user = await this.helper.findUserByEmail(email)
 
         if (!user) {
-            throw new UserNotFound(user.id)
+            throw new IncorrectPasswordOrMailError()
         }
 
         if(password !== user.password) {
-            throw new IncorrectPasswordError()
+            throw new IncorrectPasswordOrMailError()
         }
 
         return user
