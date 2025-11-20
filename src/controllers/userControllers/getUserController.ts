@@ -11,11 +11,13 @@ export class GetUserController {
 
         try {
 
-            await this.service.findUserById(id)
+            const user = await this.service.findUserById(id)
+            const { password, ...safeUser } = user
+
 
             return res.status(200).json({
                 ok: true,
-                id: req.params.id
+                user: safeUser
             })
 
         } catch (error: any) {

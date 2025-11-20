@@ -25,7 +25,7 @@ export class PostLoginUserController {
 
         }catch (error: any) {
 
-            if (error.name === "IncorrectPasswordError") {
+            if (error.name === "IncorrectPasswordOrMailError") {
                 return res.status(401).json({
                     ok: false,
                     message: error.message

@@ -8,6 +8,6 @@ const helper = new userHelper()
 const service = new userService(helper)
 const patchUserPasswordController = new PatchUserPasswordController(service)
 
-export function patchUserPasswordRoute (router: Router) { 
+export function patchUserPasswordRoute(router: Router) {
     router.patch("/v1/users/:id", new UserMiddleware().run, patchUserPasswordController.run.bind(patchUserPasswordController))
 }

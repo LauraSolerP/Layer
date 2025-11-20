@@ -1,0 +1,24 @@
+import { Helper } from "./helper";
+import { MenuModel } from "../model/menu.model";
+import { EntitySchema } from "typeorm";
+import { Menu } from "../entities/menu";
+
+
+export class menuHelper extends Helper<Menu> {
+
+    getEntitySchema(): EntitySchema<Menu> {
+        return MenuModel
+    }
+
+    async findMenuById(id: string): Promise<Menu | null> {
+        return (await this.getRepository()).findOneBy({ id })
+    }
+
+    async saveMenu(menu: Menu): Promise<Menu> {
+        return (await this.getRepository()).save(menu)
+    }
+
+    async deleteMenu(id: string): Promise<void> {
+        await (await this.getRepository()).delete(id)
+    }
+} 

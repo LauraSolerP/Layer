@@ -1,7 +1,7 @@
 import { v4 } from "uuid"
 import { Entity } from "./entity"
 
-enum Season{
+export enum Season {
     SPRING = 'SPRING',
     SUMMER = 'SUMMER',
     FALL = 'FALL',
@@ -17,9 +17,9 @@ export class Menu implements Entity {
         readonly season: Season,
         readonly priceValue: number,
         readonly priceCurrency: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             truckId: this.truckId,
@@ -30,17 +30,17 @@ export class Menu implements Entity {
         }
     }
 
-    static create (id: string, truckId: string, description: string, season: Season, priceValue: number, priceCurrency: string): Menu {
+    static create(truckId: string, description: string, season: Season, priceValue: number): Menu {
         return new Menu(
-            id = v4(), 
-            truckId, 
-            description, 
-            season, 
-            priceValue, 
-            priceCurrency = "EUR")
+            v4(),
+            truckId,
+            description,
+            season,
+            priceValue,
+            "EUR")
     }
 
-    update (description: string, season: Season, priceValue: number, priceCurrency:string): Menu {
+    update(description: string, season: Season, priceValue: number, priceCurrency: string): Menu {
         return new Menu(
             this.id,
             this.truckId,
