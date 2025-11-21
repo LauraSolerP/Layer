@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { menuService } from "../../service/menuService"
 
-export class GetUserController {
+export class GetMenuController {
 
     constructor(private readonly service: menuService) { }
 
