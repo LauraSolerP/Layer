@@ -19,6 +19,10 @@ export class menuService {
 
     }
 
+    async findMenus(): Promise<Menu[]> {
+        return this.helper.findMenus()
+    }
+
     async createMenu(truckId: string, description: string, season: Season, priceValue: number): Promise<Menu> {
 
 
@@ -27,7 +31,7 @@ export class menuService {
         return this.helper.saveMenu(menu)
     }
 
-    async updateMenu(id: string, truckId?: string, description?: string, season?: Season, priceValue?: number, priceCurrency?: string): Promise<Menu> {
+    async updateMenu(id: string, description?: string, season?: Season, priceValue?: number, priceCurrency?: string): Promise<Menu> {
         const existing = await this.findMenuById(id)
 
         const updatedMenu = existing.update({ description, season, priceValue, priceCurrency })

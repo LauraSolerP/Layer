@@ -40,14 +40,14 @@ export class Menu implements Entity {
             "EUR")
     }
 
-    update(description: string, season: Season, priceValue: number, priceCurrency: string): Menu {
+    update(data: { description: string | undefined, season: Season | undefined, priceValue: number | undefined, priceCurrency: string | undefined }): Menu {
         return new Menu(
             this.id,
             this.truckId,
-            description,
-            season,
-            priceValue,
-            priceCurrency
+            data.description ?? this.description,
+            data.season ?? this.season,
+            data.priceValue ?? this.priceValue,
+            data.priceCurrency ?? this.priceCurrency
         )
     }
 

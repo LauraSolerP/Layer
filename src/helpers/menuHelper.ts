@@ -14,6 +14,10 @@ export class menuHelper extends Helper<Menu> {
         return (await this.getRepository()).findOneBy({ id })
     }
 
+    async findMenus(): Promise<Menu[]> {
+        return (await this.getRepository()).find()
+    }
+
     async saveMenu(menu: Menu): Promise<Menu> {
         return (await this.getRepository()).save(menu)
     }
