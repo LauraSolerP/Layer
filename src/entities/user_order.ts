@@ -8,9 +8,9 @@ export class UserOrder implements Entity {
         readonly userId: string,
         readonly orderId: string,
         readonly dishId: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             userId: this.userId,
@@ -19,21 +19,21 @@ export class UserOrder implements Entity {
         }
     }
 
-    static create (id: string, userId: string, orderId: string, dishId: string): UserOrder {
+    static create(userId: string, orderId: string, dishId: string): UserOrder {
         return new UserOrder(
-            id = v4(), 
-            userId, 
+            v4(),
+            userId,
             orderId,
             dishId
         )
     }
 
-    update (userId: string, orderId: string, dishId: string): UserOrder {
+    update(data: { userId?: string | undefined, orderId?: string | undefined, dishId?: string | undefined }): UserOrder {
         return new UserOrder(
             this.id,
-            userId,
-            orderId,
-            dishId
+            data.userId ?? this.userId,
+            data.orderId ?? this.orderId,
+            data.dishId ?? this.dishId
         )
     }
 

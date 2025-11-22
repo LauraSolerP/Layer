@@ -7,9 +7,9 @@ export class DishMenu implements Entity {
         readonly id: string,
         readonly menuId: string,
         readonly dishId: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             menuId: this.menuId,
@@ -17,18 +17,18 @@ export class DishMenu implements Entity {
         }
     }
 
-    static create (id: string, menuId: string, dishId: string): DishMenu {
+    static create(id: string, menuId: string, dishId: string): DishMenu {
         return new DishMenu(
-            id = v4(), 
-            menuId, 
+            id = v4(),
+            menuId,
             dishId)
     }
 
-    update (menuId: string, dishId: string): DishMenu {
+    update(data: { menuId?: string | undefined, dishId?: string | undefined }): DishMenu {
         return new DishMenu(
             this.id,
-            menuId,
-            dishId
+            data.menuId ?? this.menuId,
+            data.dishId ?? this.dishId
         )
     }
 

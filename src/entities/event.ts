@@ -9,9 +9,9 @@ export class Event implements Entity {
         readonly location: string,
         readonly fromDate: Date,
         readonly toDate: Date
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             location: this.location,
@@ -20,20 +20,20 @@ export class Event implements Entity {
         }
     }
 
-    static create (id: string, location: string, fromDate: Date, toDate: Date): Event {
+    static create(location: string, fromDate: Date, toDate: Date): Event {
         return new Event(
-            id = v4(), 
-            location, 
-            fromDate, 
+            v4(),
+            location,
+            fromDate,
             toDate)
     }
 
-    update (location: string, fromDate: Date, toDate: Date): Event {
+    update(data: { location?: string | undefined, fromDate?: Date | undefined, toDate?: Date | undefined }): Event {
         return new Event(
             this.id,
-            location,
-            fromDate,
-            toDate
+            data.location ?? this.location,
+            data.fromDate ?? this.fromDate,
+            data.toDate ?? this.toDate
         )
     }
 

@@ -8,9 +8,9 @@ export class Truck implements Entity {
         readonly id: string,
         readonly ownerId: string,
         readonly nom: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             ownerId: this.ownerId,
@@ -18,18 +18,18 @@ export class Truck implements Entity {
         }
     }
 
-    static create (id: string, ownerId: string, nom: string): Truck {
+    static create(ownerId: string, nom: string): Truck {
         return new Truck(
-            id = v4(), 
-            ownerId, 
+            v4(),
+            ownerId,
             nom)
     }
 
-    update (ownerId: string, nom: string): Truck {
+    update(data: { ownerId?: string | undefined, nom?: string | undefined }): Truck {
         return new Truck(
             this.id,
-            ownerId,
-            nom
+            data.ownerId ?? this.ownerId,
+            data.nom ?? this.nom
         )
     }
 

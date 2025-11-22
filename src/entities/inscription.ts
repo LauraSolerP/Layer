@@ -9,9 +9,9 @@ export class Inscription implements Entity {
         readonly truckId: string,
         readonly eventId: string,
         readonly participation: boolean
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             truckId: this.truckId,
@@ -20,20 +20,20 @@ export class Inscription implements Entity {
         }
     }
 
-    static create (id: string, truckId: string, eventId: string, participation: boolean): Inscription {
+    static create(truckId: string, eventId: string, participation: boolean): Inscription {
         return new Inscription(
-            id = v4(), 
-            truckId, 
+            v4(),
+            truckId,
             eventId,
-            participation = true)
+            participation)
     }
 
-    update (participation: boolean): Inscription {
+    update(data: { participation?: boolean | undefined }): Inscription {
         return new Inscription(
             this.id,
             this.truckId,
             this.eventId,
-            participation
+            data.participation ?? this.participation
         )
     }
 

@@ -9,9 +9,9 @@ export class Review implements Entity {
         readonly clientId: string,
         readonly orderId: string,
         readonly description: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             clientId: this.clientId,
@@ -20,21 +20,21 @@ export class Review implements Entity {
         }
     }
 
-    static create (id: string, clientId: string, orderId: string, description: string): Review {
+    static create(clientId: string, orderId: string, description: string): Review {
         return new Review(
-            id = v4(), 
-            clientId, 
+            v4(),
+            clientId,
             orderId,
             description
         )
     }
 
-    update (clientId: string, orderId: string, description: string): Review {
+    update(data: { clientId?: string | undefined, orderId?: string | undefined, description?: string | undefined }): Review {
         return new Review(
             this.id,
-            clientId,
-            orderId,
-            description
+            data.clientId ?? this.clientId,
+            data.orderId ?? this.orderId,
+            data.description ?? this.description
         )
     }
 

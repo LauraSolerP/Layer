@@ -20,9 +20,9 @@ export class Order implements Entity {
         readonly totalCurrency: string,
         readonly state: OrderState,
         readonly deliveryTime: DateTime
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             clientId: this.clientId,
@@ -34,28 +34,28 @@ export class Order implements Entity {
         }
     }
 
-    static create (id: string, clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Order {
+    static create(clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Order {
         return new Order(
-            id = v4(), 
-            clientId, 
-            truckId, 
-            specialRequests,
-            totalValue, 
-            totalCurrency = "EUR", 
-            state, 
-            deliveryTime)
-    }
-
-    update (truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Order {
-        return new Order(
-            this.id,
-            this.clientId,
+            v4(),
+            clientId,
             truckId,
             specialRequests,
             totalValue,
             totalCurrency,
             state,
-            deliveryTime
+            deliveryTime)
+    }
+
+    update(data: { clientId?: string | undefined, truckId?: string | undefined, specialRequests?: string | undefined, totalValue?: number | undefined, totalCurrency?: string | undefined, state?: OrderState | undefined, deliveryTime?: DateTime | undefined }): Order {
+        return new Order(
+            this.id,
+            data.clientId ?? this.clientId,
+            data.truckId ?? this.truckId,
+            data.specialRequests ?? this.specialRequests,
+            data.totalValue ?? this.totalValue,
+            data.totalCurrency ?? this.totalCurrency,
+            data.state ?? this.state,
+            data.deliveryTime ?? this.deliveryTime
         )
     }
 

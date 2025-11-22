@@ -1,7 +1,7 @@
 import { v4 } from "uuid"
 import { Entity } from "./entity"
 
-enum Availability{
+export enum Availability {
     AVAILABLE = 'AVAILABLE',
     OUTOFSTOCK = 'OUTOFSTOCK',
     UNAVAILABLE = 'UNAVAILABLE'
@@ -16,9 +16,9 @@ export class Dish implements Entity {
         readonly availability: Availability,
         readonly priceValue: number,
         readonly priceCurrency: string
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             truckId: this.truckId,
@@ -29,24 +29,24 @@ export class Dish implements Entity {
         }
     }
 
-    static create (id: string, truckId: string, description: string, availability: Availability, priceValue: number, priceCurrency: string): Dish {
+    static create(truckId: string, description: string, availability: Availability, priceValue: number, priceCurrency: string): Dish {
         return new Dish(
-            id = v4(), 
-            truckId, 
-            description, 
-            availability, 
-            priceValue, 
-            priceCurrency = "EUR")
-    }
-
-    update (description: string, availability: Availability, priceValue: number, priceCurrency:string): Dish {
-        return new Dish(
-            this.id,
-            this.truckId,
+            v4(),
+            truckId,
             description,
             availability,
             priceValue,
-            priceCurrency
+            priceCurrency)
+    }
+
+    update(data: { description?: string | undefined, availability?: Availability | undefined, priceValue?: number | undefined, priceCurrency?: string | undefined }): Dish {
+        return new Dish(
+            this.id,
+            this.truckId,
+            data.description ?? this.description,
+            data.availability ?? this.availability,
+            data.priceValue ?? this.priceValue,
+            data.priceCurrency ?? this.priceCurrency
         )
     }
 
