@@ -17,9 +17,9 @@ export class DishMenu implements Entity {
         }
     }
 
-    static create(id: string, menuId: string, dishId: string): DishMenu {
+    static create(menuId: string, dishId: string): DishMenu {
         return new DishMenu(
-            id = v4(),
+            v4(),
             menuId,
             dishId)
     }
