@@ -25,7 +25,6 @@ export class dishMenuService {
 
     async createDishMenu(menuId: string, dishId: string): Promise<DishMenu> {
 
-
         const dishMenu = DishMenu.create(menuId, dishId)
 
         return this.helper.saveDishMenu(dishMenu)

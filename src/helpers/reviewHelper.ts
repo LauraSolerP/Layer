@@ -4,7 +4,7 @@ import { EntitySchema } from "typeorm";
 import { Review } from "../entities/review";
 
 
-export class ReviewHelper extends Helper<Review> {
+export class reviewHelper extends Helper<Review> {
 
     getEntitySchema(): EntitySchema<Review> {
         return ReviewModel

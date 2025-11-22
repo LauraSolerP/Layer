@@ -4,7 +4,7 @@ import { EntitySchema } from "typeorm";
 import { Order } from "../entities/order";
 
 
-export class OrderHelper extends Helper<Order> {
+export class orderHelper extends Helper<Order> {
 
     getEntitySchema(): EntitySchema<Order> {
         return OrderModel

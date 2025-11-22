@@ -4,7 +4,7 @@ import { EntitySchema } from "typeorm";
 import { Truck } from "../entities/truck";
 
 
-export class TruckHelper extends Helper<Truck> {
+export class truckHelper extends Helper<Truck> {
 
     getEntitySchema(): EntitySchema<Truck> {
         return TruckModel

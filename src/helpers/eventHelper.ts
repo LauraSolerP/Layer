@@ -4,7 +4,7 @@ import { EntitySchema } from "typeorm";
 import { Event } from "../entities/event";
 
 
-export class EventHelper extends Helper<Event> {
+export class eventHelper extends Helper<Event> {
 
     getEntitySchema(): EntitySchema<Event> {
         return EventModel
