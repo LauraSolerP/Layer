@@ -9,6 +9,6 @@ const helper = new menuHelper()
 const service = new menuService(helper)
 const deleteMenuController = new DeleteMenuController(service)
 
-export function deleteUserRoute(router: Router) {
+export function deleteMenuRoute(router: Router) {
     router.delete("/v1/menu/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteMenuController.run.bind(deleteMenuController))
 }

@@ -8,6 +8,6 @@ const helper = new dishHelper()
 const service = new dishService(helper)
 const getDishesController = new GetDishesController(service)
 
-export function getDishRoute(router: Router) {
+export function getDishesRoute(router: Router) {
     router.get("/v1/dish", new UserMiddleware().run, getDishesController.run.bind(getDishesController))
 }

@@ -1,9 +1,10 @@
 import { Entity } from "./entity"
 import { v4 } from "uuid"
 
-export enum UserType{
+export enum UserType {
     CLIENT = 'CLIENT',
-    OWNER = 'OWNER'
+    OWNER = 'OWNER',
+    ADMIN = 'ADMIN'
 }
 
 export class User implements Entity {
@@ -14,9 +15,9 @@ export class User implements Entity {
         readonly email: string,
         readonly password: string,
         readonly type: UserType
-    ) {}
+    ) { }
 
-    getPrimitive () {
+    getPrimitive() {
         return {
             id: this.id,
             nom: this.name,
@@ -39,7 +40,7 @@ export class User implements Entity {
     }
 
 
-    update (data: {name?: string | undefined, surname?: string | undefined, email?: string | undefined, password?: string | undefined, type?: UserType | undefined}): User {
+    update(data: { name?: string | undefined, surname?: string | undefined, email?: string | undefined, password?: string | undefined, type?: UserType | undefined }): User {
         return new User(
             this.id,
             data.name ?? this.name,
