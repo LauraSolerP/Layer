@@ -4,9 +4,13 @@ import { PostDishController } from "../../controllers/dishControllers/postDishCo
 import { dishService } from "../../service/dishService";
 import { dishHelper } from "../../helpers/dishHelper";
 import { requireRole } from "../../middlewares/requireRoleMiddleware";
+import { userOrderHelper } from "../../helpers/user_orderHelper";
+import { userOrderService } from "../../service/user_orderService";
 
 const helper = new dishHelper()
-const service = new dishService(helper)
+const uOrderHelper = new userOrderHelper()
+const uOrderService = new userOrderService(uOrderHelper)
+const service = new dishService(helper, uOrderService)
 const postDishController = new PostDishController(service)
 
 export function postDishRoute(router: Router) {

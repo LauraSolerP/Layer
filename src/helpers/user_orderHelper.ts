@@ -18,6 +18,10 @@ export class userOrderHelper extends Helper<UserOrder> {
         return (await this.getRepository()).find()
     }
 
+    async findUserOrdersByDishId(dishId: string): Promise<UserOrder[]> {
+        return (await this.getRepository()).find({ where: { dishId } })
+    }
+
     async saveUserOrder(userOrder: UserOrder): Promise<UserOrder> {
         return (await this.getRepository()).save(userOrder)
     }

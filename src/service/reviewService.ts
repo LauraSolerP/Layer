@@ -25,7 +25,6 @@ export class reviewService {
 
     async createReview(clientId: string, orderId: string, description: string): Promise<Review> {
 
-
         const review = Review.create(clientId, orderId, description)
 
         return this.helper.saveReview(review)

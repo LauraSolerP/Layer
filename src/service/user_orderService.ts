@@ -1,5 +1,6 @@
 import { UserOrder } from "../entities/user_order";
 import { UserOrderNotFound } from "../errors/user_order/userOrderNotFound";
+import { UserOrdersNotFound } from "../errors/user_order/userOrdersNotFound";
 import { userOrderHelper } from "../helpers/user_orderHelper";
 
 
@@ -20,7 +21,25 @@ export class userOrderService {
     }
 
     async findUserOrders(): Promise<UserOrder[]> {
-        return this.helper.findUserOrders()
+
+        const userOrders = await this.helper.findUserOrders()
+
+        if (!userOrders) {
+            throw new UserOrdersNotFound()
+        }
+
+        return userOrders
+    }
+
+    async findUserOrdersByDishId(dishId: string): Promise<UserOrder[]> {
+
+        const userOrders = await this.helper.findUserOrdersByDishId(dishId)
+
+        if (!userOrders) {
+            throw new UserOrdersNotFound()
+        }
+
+        return userOrders
     }
 
     async createUserOrder(userId: string, orderId: string, dishId: string): Promise<UserOrder> {

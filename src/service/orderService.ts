@@ -1,7 +1,8 @@
 import { DateTime } from "luxon";
 import { Order, OrderState } from "../entities/order";
-import { OrderNotFound } from "../errors/order/orderNotFound";
 import { orderHelper } from "../helpers/orderHelper";
+import { OrdersNotFound } from "../errors/order/ordersNotFound";
+import { OrderNotFound } from "../errors/order/orderNotFound";
 
 
 export class orderService {
@@ -21,7 +22,14 @@ export class orderService {
     }
 
     async findOrders(): Promise<Order[]> {
-        return this.helper.findOrders()
+
+        const orders = await this.helper.findOrders()
+
+        if (!orders) {
+            throw new OrdersNotFound()
+        }
+
+        return orders
     }
 
     async createOrder(clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Promise<Order> {

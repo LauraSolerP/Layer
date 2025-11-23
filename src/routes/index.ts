@@ -17,6 +17,7 @@ import { patchDishRoute } from "./Dish/patchDish"
 import { patchDishPriceRoute } from "./Dish/patchDishPrice"
 import { patchDishAvailabilityRoute } from "./Dish/patchDishAvailability"
 import { getDishRoute } from "./Dish/getDish"
+import { getDishReservationCountRoute } from "./Dish/getDishReservationCount"
 import { getDishesRoute } from "./Dish/getDishes"
 import { putDishRoute } from "./Dish/putDish"
 
@@ -60,6 +61,7 @@ import { postTruckRoute } from "./Truck/postTruck"
 import { putTruckRoute } from "./Truck/putTruck"
 import { patchTruckNameRoute } from "./Truck/patchTruckName"
 import { patchTruckOwnerRoute } from "./Truck/patchTruckOwner"
+import { patchTruckInscriptionRoute } from "./Truck/patchTruckInscription"
 
 export function registerRoutes(): Router {
     const router = Router()
@@ -82,6 +84,7 @@ export function registerRoutes(): Router {
     patchDishPriceRoute(router)
     patchDishAvailabilityRoute(router)
     getDishRoute(router)
+    getDishReservationCountRoute(router)
     getDishesRoute(router)
     putDishRoute(router)
 
@@ -125,6 +128,7 @@ export function registerRoutes(): Router {
     putTruckRoute(router)
     patchTruckNameRoute(router)
     patchTruckOwnerRoute(router)
+    patchTruckInscriptionRoute(router)
 
     return router
 }

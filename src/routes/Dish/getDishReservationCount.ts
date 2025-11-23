@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { UserMiddleware } from "../../middlewares/userMiddleware";
-import { DeleteDishController } from "../../controllers/dishControllers/deleteDishController";
+import { GetDishReservationCountController } from "../../controllers/dishControllers/getDishReservartionCountController";
 import { dishHelper } from "../../helpers/dishHelper";
 import { dishService } from "../../service/dishService";
-import { requireRole } from "../../middlewares/requireRoleMiddleware";
 import { userOrderHelper } from "../../helpers/user_orderHelper";
 import { userOrderService } from "../../service/user_orderService";
 
@@ -11,8 +10,8 @@ const helper = new dishHelper()
 const uOrderHelper = new userOrderHelper()
 const uOrderService = new userOrderService(uOrderHelper)
 const service = new dishService(helper, uOrderService)
-const deleteDishController = new DeleteDishController(service)
+const getDishReservationCountController = new GetDishReservationCountController(service)
 
-export function deleteDishRoute(router: Router) {
-    router.delete("/v1/dish/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteDishController.run.bind(deleteDishController))
+export function getDishReservationCountRoute(router: Router) {
+    router.get("/v1/dish/:id", new UserMiddleware().run, getDishReservationCountController.run.bind(getDishReservationCountController))
 }

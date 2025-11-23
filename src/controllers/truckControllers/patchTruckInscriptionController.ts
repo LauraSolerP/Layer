@@ -1,28 +1,28 @@
 import { Request, Response } from "express"
-import { dishService } from "../../service/dishService"
+import { inscriptionService } from "../../service/inscriptionService"
 
-export class PatchDishAvailabilityController {
+export class PatchTruckInscriptionController {
 
-    constructor(private readonly service: dishService) { }
+    constructor(private readonly service: inscriptionService) { }
 
     async run(req: Request, res: Response): Promise<Response> {
 
-        const { id, availability } = req.body
+        const { id, participation } = req.body
 
         try {
 
-            const result = await this.service.updateDish(id, availability)
+            const result = await this.service.updateInscription(id, participation)
 
             return res.status(200).json({
                 ok: true,
-                message: "Dish updated successfully",
-                dish: result.updated,
+                message: "Inscription updated successfully",
+                inscription: result.updated,
                 alternatives: result.alternatives
             })
 
         } catch (error: any) {
 
-            if (error.name === "DishNotFound") {
+            if (error.name === "InscriptionNotFound") {
                 return res.status(404).json({
                     ok: false,
                     message: error.message
@@ -36,5 +36,4 @@ export class PatchDishAvailabilityController {
             })
         }
     }
-
 }

@@ -1,33 +1,31 @@
 import { Request, Response } from "express"
 import { dishService } from "../../service/dishService"
 
-export class PatchDishAvailabilityController {
+export class GetDishReservationCountController {
 
     constructor(private readonly service: dishService) { }
 
     async run(req: Request, res: Response): Promise<Response> {
 
-        const { id, availability } = req.body
+        const { id } = req.params
+
+        if (!id) {
+            return res.status(400).json({
+                ok: false,
+                message: "Missing dish id"
+            })
+        }
 
         try {
 
-            const result = await this.service.updateDish(id, availability)
+            const reservationCount = await this.service.getDishReservationCount(id)
 
             return res.status(200).json({
                 ok: true,
-                message: "Dish updated successfully",
-                dish: result.updated,
-                alternatives: result.alternatives
+                reservationCount: reservationCount
             })
 
         } catch (error: any) {
-
-            if (error.name === "DishNotFound") {
-                return res.status(404).json({
-                    ok: false,
-                    message: error.message
-                })
-            }
 
             return res.status(500).json({
                 ok: false,
@@ -36,5 +34,4 @@ export class PatchDishAvailabilityController {
             })
         }
     }
-
 }
