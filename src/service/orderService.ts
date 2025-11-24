@@ -3,11 +3,12 @@ import { Order, OrderState } from "../entities/order";
 import { orderHelper } from "../helpers/orderHelper";
 import { OrdersNotFound } from "../errors/order/ordersNotFound";
 import { OrderNotFound } from "../errors/order/orderNotFound";
+import { userOrderService } from "./user_orderService";
 
 
 export class orderService {
 
-    constructor(private readonly helper: orderHelper) { }
+    constructor(private readonly helper: orderHelper, private readonly userOrderService: userOrderService) { }
 
     async findOrderById(id: string): Promise<Order> {
 
@@ -32,10 +33,14 @@ export class orderService {
         return orders
     }
 
-    async createOrder(clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime): Promise<Order> {
+    async createOrder(clientId: string, truckId: string, specialRequests: string, totalValue: number, totalCurrency: string, state: OrderState, deliveryTime: DateTime, dishIds: string[]): Promise<Order> {
 
 
         const order = Order.create(clientId, truckId, specialRequests, totalValue, totalCurrency, state, deliveryTime)
+
+        for (const dishId of dishIds) {
+            await this.userOrderService.createUserOrder(clientId, order.id, dishId)
+        }
 
         return this.helper.saveOrder(order)
     }

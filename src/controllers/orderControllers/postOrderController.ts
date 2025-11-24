@@ -7,11 +7,11 @@ export class PostOrderController {
 
     async run(req: Request, res: Response): Promise<Response> {
 
-        const { clientId, truckId, specialRequests, totalValue, totalCurrency, state, deliveryTime } = req.body
+        const { clientId, truckId, specialRequests, totalValue, totalCurrency, state, deliveryTime, dishIds } = req.body
 
         try {
 
-            await this.service.createOrder(clientId, truckId, specialRequests, totalValue, totalCurrency, state, deliveryTime)
+            await this.service.createOrder(clientId, truckId, specialRequests, totalValue, totalCurrency, state, deliveryTime, dishIds)
 
             return res.status(200).json({
                 ok: true,

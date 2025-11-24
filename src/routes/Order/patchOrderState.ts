@@ -4,9 +4,13 @@ import { PatchOrderStateController } from "../../controllers/orderControllers/pa
 import { orderHelper } from "../../helpers/orderHelper";
 import { orderService } from "../../service/orderService";
 import { requireRole } from "../../middlewares/requireRoleMiddleware";
+import { userOrderHelper } from "../../helpers/user_orderHelper";
+import { userOrderService } from "../../service/user_orderService";
 
 const helper = new orderHelper()
-const service = new orderService(helper)
+const uOrderHelper = new userOrderHelper()
+const uOrderService = new userOrderService(uOrderHelper)
+const service = new orderService(helper, uOrderService)
 const patchOrderStateController = new PatchOrderStateController(service)
 
 export function patchOrderStateRoute(router: Router) {

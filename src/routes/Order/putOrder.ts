@@ -4,9 +4,13 @@ import { PutOrderController } from "../../controllers/orderControllers/putOrderC
 import { orderService } from "../../service/orderService";
 import { orderHelper } from "../../helpers/orderHelper";
 import { requireRole } from "../../middlewares/requireRoleMiddleware";
+import { userOrderHelper } from "../../helpers/user_orderHelper";
+import { userOrderService } from "../../service/user_orderService";
 
 const helper = new orderHelper()
-const service = new orderService(helper)
+const uOrderHelper = new userOrderHelper()
+const uOrderService = new userOrderService(uOrderHelper)
+const service = new orderService(helper, uOrderService)
 const putOrderController = new PutOrderController(service)
 
 export function putOrderRoute(router: Router) {
