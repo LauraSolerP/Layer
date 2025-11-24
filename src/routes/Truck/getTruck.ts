@@ -9,5 +9,5 @@ const service = new truckService(helper)
 const getTruckController = new GetTruckController(service)
 
 export function getTruckRoute(router: Router) {
-    router.get("/v1/truck/:id", new UserMiddleware().run, getTruckController.run.bind(getTruckController))
+    router.get("/v1/trucks/:id", new UserMiddleware().run, getTruckController.run.bind(getTruckController))
 }

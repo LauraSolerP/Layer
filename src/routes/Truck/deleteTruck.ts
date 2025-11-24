@@ -10,5 +10,5 @@ const service = new truckService(helper)
 const deleteTruckController = new DeleteTruckController(service)
 
 export function deleteTruckRoute(router: Router) {
-    router.delete("/v1/truck/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteTruckController.run.bind(deleteTruckController))
+    router.delete("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteTruckController.run.bind(deleteTruckController))
 }

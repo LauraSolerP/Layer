@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GetMenuController = void 0;
+class GetMenuController {
+    service;
+    constructor(service) {
+        this.service = service;
+    }
+    async run(req, res) {
+        const { id } = req.params;
+        if (!id) {
+            return res.status(400).json({
+                ok: false,
+                message: "Missing menu id"
+            });
+        }
+        try {
+            const menu = await this.service.findMenuById(id);
+            return res.status(200).json({
+                ok: true,
+                menu: menu
+            });
+        }
+        catch (error) {
+            if (error.name === "MenuNotFound") {
+                return res.status(404).json({
+                    ok: false,
+                    message: error.message
+                });
+            }
+            return res.status(500).json({
+                ok: false,
+                message: "Server internal error",
+                error: error.message
+            });
+        }
+    }
+}
+exports.GetMenuController = GetMenuController;
+//# sourceMappingURL=getMenuController.js.map

@@ -5,11 +5,11 @@ import db from "../dataSourceConnection"
 
 export abstract class Helper<T extends Entity> {
 
-    protected async getDatabaseConnection () {
+    protected async getDatabaseConnection() {
         return await db
     }
 
-    abstract getEntitySchema (): EntitySchema
+    abstract getEntitySchema(): EntitySchema<T>
 
     async getRepository(): Promise<Repository<T>> {
         return (await this.getDatabaseConnection()).getRepository(this.getEntitySchema())

@@ -10,5 +10,9 @@ const service = new truckService(helper)
 const postTruckController = new PostTruckController(service)
 
 export function postTruckRoute(router: Router) {
-    router.post("/v1/truck", new UserMiddleware().run, requireRole(["OWNER"]), postTruckController.run.bind(postTruckController))
+    router.post("/v1/trucks", postTruckController.run.bind(postTruckController))
 }
+
+
+
+//new UserMiddleware().run, requireRole(["OWNER"]),

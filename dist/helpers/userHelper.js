@@ -10,6 +10,15 @@ class userHelper extends helper_1.Helper {
     async findUserById(id) {
         return (await this.getRepository()).findOneBy({ id });
     }
+    async findUserByEmail(email) {
+        return (await this.getRepository()).findOneBy({ email });
+    }
+    async saveUser(user) {
+        return (await this.getRepository()).save(user);
+    }
+    async deleteUser(id) {
+        await (await this.getRepository()).delete(id);
+    }
 }
 exports.userHelper = userHelper;
 //# sourceMappingURL=userHelper.js.map

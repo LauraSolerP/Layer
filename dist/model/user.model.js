@@ -12,16 +12,21 @@ exports.UserModel = new typeorm_1.EntitySchema({
             type: String,
             primary: true
         },
-        nom: {
-            type: String
+        name: {
+            type: String,
+            name: "name"
         },
-        cognom: {
-            type: String
+        surname: {
+            type: String,
+            name: "surname"
         },
         email: {
             type: String
         },
         password: {
+            type: String
+        },
+        type: {
             type: String
         }
     }

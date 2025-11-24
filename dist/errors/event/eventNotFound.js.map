@@ -1,0 +1,1 @@
+{"version":3,"file":"eventNotFound.js","sourceRoot":"","sources":["../../../src/errors/event/eventNotFound.ts"],"names":[],"mappings":";;;AACA,MAAa,aAAc,SAAQ,KAAK;IAE7B,OAAO,CAAS;IAEvB,YAAY,EAAU;QAClB,MAAM,OAAO,GAAG,qBAAqB,EAAE,mBAAmB,CAAA;QAC1D,KAAK,CAAC,OAAO,CAAC,CAAA;QACd,IAAI,CAAC,OAAO,GAAG,EAAE,CAAA;QACjB,IAAI,CAAC,IAAI,GAAG,eAAe,CAAA;IAC/B,CAAC;CACJ;AAVD,sCAUC"}

@@ -4,8 +4,8 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: gestor_pol
-      POSTGRES_PASSWORD: gestor_pol
-      POSTGRES_DB: gestor_pol
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Laura123
+      POSTGRES_DB: docker
     volumes:
       - ./data:/var/lib/postgresql/data :Z

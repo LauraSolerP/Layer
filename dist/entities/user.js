@@ -1,33 +1,43 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.User = exports.UserType = void 0;
+const uuid_1 = require("uuid");
+var UserType;
+(function (UserType) {
+    UserType["CLIENT"] = "CLIENT";
+    UserType["OWNER"] = "OWNER";
+    UserType["ADMIN"] = "ADMIN";
+})(UserType || (exports.UserType = UserType = {}));
 class User {
     id;
-    nom;
-    cognom;
+    name;
+    surname;
     email;
     password;
-    constructor(id, nom, cognom, email, password) {
+    type;
+    constructor(id, name, surname, email, password, type) {
         this.id = id;
-        this.nom = nom;
-        this.cognom = cognom;
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.password = password;
+        this.type = type;
     }
     getPrimitive() {
         return {
             id: this.id,
-            nom: this.nom,
-            cognom: this.cognom,
+            name: this.name,
+            surname: this.surname,
             email: this.email,
-            password: this.password
+            password: this.password,
+            type: this.type
         };
     }
-    static create(id, nom, cognom, email, password) {
-        return new User(id, nom, cognom, email, password);
+    static create(name, surname, email, password, type = UserType.CLIENT) {
+        return new User((0, uuid_1.v4)(), name, surname, email, password, type);
     }
-    update(nom, cognom) {
-        return new User(this.id, nom, cognom, this.email, this.password);
+    update(data) {
+        return new User(this.id, data.name ?? this.name, data.surname ?? this.surname, data.email ?? this.email, data.password ?? this.password, data.type ?? this.type);
     }
 }
 exports.User = User;

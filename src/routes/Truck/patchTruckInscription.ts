@@ -14,5 +14,5 @@ const iService = new inscriptionService(iHelper, eService)
 const patchTruckInscriptionController = new PatchTruckInscriptionController(iService)
 
 export function patchTruckInscriptionRoute(router: Router) {
-    router.patch("/v1/truck/:id", new UserMiddleware().run, requireRole(["OWNER", "ADMIN"]), patchTruckInscriptionController.run.bind(patchTruckInscriptionController))
+    router.patch("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER", "ADMIN"]), patchTruckInscriptionController.run.bind(patchTruckInscriptionController))
 }

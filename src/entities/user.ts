@@ -20,8 +20,8 @@ export class User implements Entity {
     getPrimitive() {
         return {
             id: this.id,
-            nom: this.name,
-            cognom: this.surname,
+            name: this.name,
+            surname: this.surname,
             email: this.email,
             password: this.password,
             type: this.type

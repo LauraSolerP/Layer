@@ -11,10 +11,12 @@ export const UserModel = new EntitySchema<User>({
             primary: true
         },
         name: {
-            type: String
+            type: String,
+            name: "name"
         },
         surname: {
-            type: String
+            type: String,
+            name: "surname"
         },
         email: {
             type: String
