@@ -10,5 +10,5 @@ const service = new eventService(helper)
 const deleteEventController = new DeleteEventController(service)
 
 export function deleteEventRoute(router: Router) {
-    router.delete("/v1/event/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteEventController.run.bind(deleteEventController))
+    router.delete("/v1/event/:id", new UserMiddleware().run, requireRole(["ADMIN"]), deleteEventController.run.bind(deleteEventController))
 }

@@ -10,5 +10,5 @@ const service = new reviewService(helper)
 const deleteReviewController = new DeleteReviewController(service)
 
 export function deleteReviewRoute(router: Router) {
-    router.delete("/v1/review/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteReviewController.run.bind(deleteReviewController))
+    router.delete("/v1/review/:id", new UserMiddleware().run, requireRole(["ADMIN", "CLIENT"]), deleteReviewController.run.bind(deleteReviewController))
 }

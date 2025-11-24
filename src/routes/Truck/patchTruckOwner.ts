@@ -10,5 +10,5 @@ const service = new truckService(helper)
 const patchTruckOwnerController = new PatchTruckOwnerController(service)
 
 export function patchTruckOwnerRoute(router: Router) {
-    router.patch("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER"]), patchTruckOwnerController.run.bind(patchTruckOwnerController))
+    router.patch("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER", "ADMIN"]), patchTruckOwnerController.run.bind(patchTruckOwnerController))
 }

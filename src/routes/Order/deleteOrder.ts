@@ -10,5 +10,5 @@ const service = new orderService(helper)
 const deleteOrderController = new DeleteOrderController(service)
 
 export function deleteOrderRoute(router: Router) {
-    router.delete("/v1/order/:id", new UserMiddleware().run, requireRole(["OWNER"]), deleteOrderController.run.bind(deleteOrderController))
+    router.delete("/v1/order/:id", new UserMiddleware().run, requireRole(["OWNER", "ADMIN"]), deleteOrderController.run.bind(deleteOrderController))
 }

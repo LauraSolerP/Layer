@@ -10,5 +10,5 @@ const service = new truckService(helper)
 const putTruckController = new PutTruckController(service)
 
 export function putTruckRoute(router: Router) {
-    router.put("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER"]), putTruckController.run.bind(putTruckController))
+    router.put("/v1/trucks/:id", new UserMiddleware().run, requireRole(["OWNER", "ADMIN"]), putTruckController.run.bind(putTruckController))
 }

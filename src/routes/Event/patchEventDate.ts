@@ -10,5 +10,5 @@ const service = new eventService(helper)
 const patchEventDateController = new PatchEventDateController(service)
 
 export function patchEventDateRoute(router: Router) {
-    router.patch("/v1/event/:id", new UserMiddleware().run, requireRole(["OWNER"]), patchEventDateController.run.bind(patchEventDateController))
+    router.patch("/v1/event/:id", new UserMiddleware().run, requireRole(["ADMIN"]), patchEventDateController.run.bind(patchEventDateController))
 }

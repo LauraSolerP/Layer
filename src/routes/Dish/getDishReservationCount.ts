@@ -5,6 +5,7 @@ import { dishHelper } from "../../helpers/dishHelper";
 import { dishService } from "../../service/dishService";
 import { userOrderHelper } from "../../helpers/user_orderHelper";
 import { userOrderService } from "../../service/user_orderService";
+import { requireRole } from "../../middlewares/requireRoleMiddleware";
 
 const helper = new dishHelper()
 const uOrderHelper = new userOrderHelper()
@@ -13,5 +14,5 @@ const service = new dishService(helper, uOrderService)
 const getDishReservationCountController = new GetDishReservationCountController(service)
 
 export function getDishReservationCountRoute(router: Router) {
-    router.get("/v1/dish/:id", new UserMiddleware().run, getDishReservationCountController.run.bind(getDishReservationCountController))
+    router.get("/v1/dish/:id", new UserMiddleware().run, requireRole(["OWNER"]), getDishReservationCountController.run.bind(getDishReservationCountController))
 }
