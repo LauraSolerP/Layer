@@ -3,7 +3,7 @@ import { userService } from "../../service/userService"
 
 export class PostUserController {
 
-    constructor(private readonly service: userService) {}
+    constructor(private readonly service: userService) { }
 
     async run(req: Request, res: Response): Promise<Response> {
 
@@ -21,7 +21,7 @@ export class PostUserController {
         } catch (error: any) {
 
             if (error.name === "ExistingEmailError") {
-                return res.status(404).json({
+                return res.status(400).json({
                     ok: false,
                     message: error.message
                 })
