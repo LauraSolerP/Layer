@@ -12,3 +12,9 @@ const patchUserTypeController = new PatchUserTypeController(service)
 export function patchUserTypeRoute(router: Router) {
     router.patch("/v1/users/:id", new UserMiddleware().run, requireRole(["ADMIN"]), patchUserTypeController.run.bind(patchUserTypeController))
 }
+
+
+
+
+
+trucu trucu
